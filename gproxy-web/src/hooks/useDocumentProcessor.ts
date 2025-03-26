@@ -25,20 +25,17 @@ export function useDocumentProcessor() {
 
     try {
       // 调用接口处理文档
-      const response = await fetch(
-        "https://cars-auction-im.guazi-cloud.com/largeModel/getSingleCompletion",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json;charset=UTF-8",
-          },
-          credentials: "include",
-          body: JSON.stringify({
-            largerModelCode: 8,
-            prompt: prompt,
-          }),
-        }
-      );
+      const response = await fetch(process.env.NEXT_PUBLIC_AI_URL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json;charset=UTF-8",
+        },
+        credentials: "include",
+        body: JSON.stringify({
+          largerModelCode: 8,
+          prompt: prompt,
+        }),
+      });
 
       const data = await response.json();
 
